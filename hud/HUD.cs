@@ -30,11 +30,12 @@ public class HUD : CanvasLayer
     public void MainMenu()
     {
         GetNode<CanvasLayer>("MainMenu").Show();
+        GetNode<TextureRect>("Blur").Show();
         GetNode<CanvasLayer>("Game").Hide();
-        _message.Uppercase = false;
 
         _message.Text = "A Game by: Emilly S.H.";
         _message.Align = Label.AlignEnum.Left;
+        _message.Uppercase = false;
         _message.Show();
     }
 
@@ -45,6 +46,7 @@ public class HUD : CanvasLayer
     {
         GetNode<Label>("Game/RightLabel").Hide();
         GetNode<Label>("Game/LeftLabel").Hide();
+        GetNode<TextureRect>("Blur").Hide();
 
         _rightScore.Text = "0";
         _leftScore.Text = "0";

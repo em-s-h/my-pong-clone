@@ -1,17 +1,13 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://hud/pixel-font.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://hud/white.png" type="Texture" id=2]
+[ext_resource path="res://main/white.png" type="Texture" id=2]
 [ext_resource path="res://hud/HUD.cs" type="Script" id=3]
-[ext_resource path="res://hud/blur.shader" type="Shader" id=4]
+[ext_resource path="res://main/blur.shader" type="Shader" id=4]
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
 font_data = ExtResource( 1 )
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 4 )
-shader_param/amount = 1.75
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -25,7 +21,11 @@ font_data = ExtResource( 1 )
 size = 25
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 4 )
+shader_param/amount = 1.5
+
+[sub_resource type="DynamicFont" id=7]
 size = 25
 font_data = ExtResource( 1 )
 
@@ -33,6 +33,7 @@ font_data = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Game" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="LeftLabel" type="Label" parent="Game"]
 anchor_left = 0.25
@@ -82,15 +83,7 @@ text = "00"
 align = 1
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
-
-[node name="Blur" type="TextureRect" parent="MainMenu"]
-material = SubResource( 4 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 2
-size_flags_vertical = 2
-texture = ExtResource( 2 )
-expand = true
+layer = 2
 
 [node name="Title" type="Label" parent="MainMenu"]
 anchor_left = 0.5
@@ -157,13 +150,20 @@ value = 2.0
 tick_count = 10
 ticks_on_borders = true
 
+[node name="Blur" type="TextureRect" parent="."]
+material = SubResource( 6 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
 [node name="Message" type="Label" parent="."]
 anchor_top = 0.917
 anchor_right = 1.0
 anchor_bottom = 0.967
 margin_top = -0.200012
 margin_bottom = -0.200012
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 align = 1
 
 [connection signal="pressed" from="MainMenu/1PGame" to="." method="PrepareGame" binds= [ 1 ]]

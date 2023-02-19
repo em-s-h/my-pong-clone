@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/white.png-b2cf50656b7df69d9f47db09572b7819.stex"
+path="res://.import/separator.png-56be86f1a266f1d528a747b99bf21cee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/white.png"
-dest_files=[ "res://.import/white.png-b2cf50656b7df69d9f47db09572b7819.stex" ]
+source_file="res://main/separator.png"
+dest_files=[ "res://.import/separator.png-56be86f1a266f1d528a747b99bf21cee.stex" ]
 
 [params]
 
