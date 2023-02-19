@@ -1,0 +1,170 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://hud/pixel-font.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://hud/white.png" type="Texture" id=2]
+[ext_resource path="res://hud/HUD.cs" type="Script" id=3]
+[ext_resource path="res://hud/blur.shader" type="Shader" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 4 )
+shader_param/amount = 1.75
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 25
+font_data = ExtResource( 1 )
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Game" type="CanvasLayer" parent="."]
+
+[node name="LeftLabel" type="Label" parent="Game"]
+anchor_left = 0.25
+anchor_right = 0.25
+margin_left = -84.0
+margin_top = 150.0
+margin_right = 84.0
+margin_bottom = 215.0
+custom_fonts/font = SubResource( 2 )
+text = "Lose"
+align = 1
+uppercase = true
+
+[node name="LeftScore" type="Label" parent="Game"]
+anchor_left = 0.25
+anchor_right = 0.25
+margin_left = -42.0
+margin_top = 50.0
+margin_right = 42.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 2 )
+text = "00"
+align = 1
+
+[node name="RightLabel" type="Label" parent="Game"]
+anchor_left = 0.75
+anchor_right = 0.75
+margin_left = -84.0
+margin_top = 150.0
+margin_right = 84.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 2 )
+text = "Win"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="RightScore" type="Label" parent="Game"]
+anchor_left = 0.75
+anchor_right = 0.75
+margin_left = -42.0
+margin_top = 50.0
+margin_right = 42.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 2 )
+text = "00"
+align = 1
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+
+[node name="Blur" type="TextureRect" parent="MainMenu"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Title" type="Label" parent="MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.167
+anchor_right = 0.5
+anchor_bottom = 0.167
+margin_left = -132.0
+margin_top = -0.200005
+margin_right = 130.0
+margin_bottom = 99.8
+custom_fonts/font = SubResource( 1 )
+text = "PONG"
+align = 1
+autowrap = true
+
+[node name="1PGame" type="Button" parent="MainMenu"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 158.0
+margin_top = 36.0
+margin_right = 321.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 3 )
+text = "1 PLAYER"
+
+[node name="2PGame" type="Button" parent="MainMenu"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -319.0
+margin_top = 36.0
+margin_right = -156.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 3 )
+text = "2 PLAYER"
+
+[node name="Label" type="Label" parent="MainMenu"]
+anchor_left = 0.236
+anchor_top = 0.467
+anchor_right = 0.236
+anchor_bottom = 0.467
+margin_left = -81.664
+margin_top = -0.200012
+margin_right = 78.336
+margin_bottom = 25.8
+custom_fonts/font = SubResource( 5 )
+text = "BOT LEVEL"
+align = 1
+
+[node name="BotLevel" type="HSlider" parent="MainMenu"]
+anchor_left = 0.234
+anchor_top = 0.52
+anchor_right = 0.234
+anchor_bottom = 0.52
+margin_left = -79.616
+margin_top = -3.05176e-05
+margin_right = 80.384
+margin_bottom = 16.0
+min_value = 2.0
+max_value = 5.0
+step = 0.25
+value = 2.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Message" type="Label" parent="."]
+anchor_top = 0.917
+anchor_right = 1.0
+anchor_bottom = 0.967
+margin_top = -0.200012
+margin_bottom = -0.200012
+custom_fonts/font = SubResource( 6 )
+align = 1
+
+[connection signal="pressed" from="MainMenu/1PGame" to="." method="PrepareGame" binds= [ 1 ]]
+[connection signal="pressed" from="MainMenu/2PGame" to="." method="PrepareGame" binds= [ 2 ]]
